@@ -1,0 +1,10 @@
+h3="before: #{@translation.starting_phrase}"
+h3="after: #{@translation.ending_phrase}"
+
+- @translation_steps.each do | step |
+  .well
+      h4="from: #{step.from_language}"
+      h4="to: #{step.to_language}"
+      h4="starting: #{step.starting_phrase}"
+      h4="ending: #{step.ending_phrase}"
+
