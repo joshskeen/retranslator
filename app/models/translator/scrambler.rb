@@ -40,7 +40,11 @@ module Translator
       @translations << last
       puts "RESULT: #{last.after}"
       @result = last.after
+      begin
       @twitter.update(@result.slice(0,140))
+      rescue Exception => e
+        puts e
+      end
     end
 
     def to_s

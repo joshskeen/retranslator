@@ -4,7 +4,7 @@ class TranslationsController < ApplicationController
 
   def index
     @translation = Translation.new
-    @translations = Translation.all
+    @translations = Translation.scoped.page params[:page]
   end
 
   def create
@@ -13,7 +13,7 @@ class TranslationsController < ApplicationController
       @translation.perform
       respond_with(@translation)
     else
-      @translations = Translation.all
+      @translations = Translation.scoped.page params[:page]
       render :index
     end
   end

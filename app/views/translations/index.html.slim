@@ -9,3 +9,5 @@ h2="ReTranslations"
     h3=translation.ending_phrase
     small="from '#{translation.starting_phrase}'"
   = link_to "View translation history »", translation_path(translation)
+
+= paginate @translations

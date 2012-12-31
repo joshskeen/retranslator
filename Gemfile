@@ -8,6 +8,7 @@ gem 'pg'
 gem 'slim-rails'
 gem 'bing_translator'
 gem 'twitter'
+gem 'kaminari'
 
 # Gems used only for assets and not required
 # in production environments by default.
