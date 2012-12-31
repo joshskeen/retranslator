@@ -1,11 +1,11 @@
 = form_for @translation do | f |
-  = f.text_field :starting_phrase, :class => "large-input"
+  = f.text_field :starting_phrase, :class => "large-input", placeholder: "Enter a phrase to retranslate.."
   = f.submit "retranslate", :class => "btn btn-primary"
-  
-h3="Translations"
+
+h2="ReTranslations"
 - @translations.each do | translation |
   hr
   .blockquote
-    h4=translation.ending_phrase
+    h3=translation.ending_phrase
     small="from '#{translation.starting_phrase}'"
-  = link_to "View translation history", translation_path(translation)
+  = link_to "View translation history »", translation_path(translation)
