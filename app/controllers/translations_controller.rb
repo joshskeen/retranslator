@@ -9,9 +9,13 @@ class TranslationsController < ApplicationController
 
   def create
     @translation = Translation.new(params[:translation])
-    @translation.save
-    @translation.perform
-    respond_with(@translation)
+    if @translation.save
+      @translation.perform
+      respond_with(@translation)
+    else
+      @translations = Translation.all
+      render :index
+    end
   end
 
   def show

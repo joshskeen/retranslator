@@ -1,6 +1,6 @@
 h3="before: #{@translation.starting_phrase}"
 h3="after: #{@translation.ending_phrase}"
-
+= link_to "Back", root_path, :class => "btn btn-primary"
 - @translation_steps.each do | step |
   .well
       h4="from: #{step.from_language}"
