@@ -11,7 +11,11 @@ class TranslationsController < ApplicationController
     @translation = Translation.new(params[:translation])
     if @translation.save
       @translation.perform
-      respond_with(@translation)
+      if params.has_key?(:api)
+        render text: @translation.ending_phrase
+      else
+        respond_with(@translation)
+      end
     else
       @translations = Translation.scoped.page params[:page]
       render :index
