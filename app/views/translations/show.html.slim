@@ -6,8 +6,8 @@ br
 hr
 - @translation_steps.each do | step |
   .well
-      h4="from: #{step.from_language}"
-      h4="to: #{step.to_language}"
+      h4="from: #{language_name(step.from_language)}"
+      h4="to: #{language_name(step.to_language)}"
       h4="starting: #{step.starting_phrase}"
       h4="ending: #{step.ending_phrase}"
 
