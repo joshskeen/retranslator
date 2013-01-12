@@ -11,6 +11,8 @@ class TranslationsController < ApplicationController
     @translation = Translation.new(params[:translation])
     if @translation.save
       @translation.perform
+      Translator::Tweeter.new(translation_path: translation_path(@translation),
+                              ending_phrase: @translation.ending_phrase).perform
       if params.has_key?(:api)
         render text: @translation.ending_phrase
       else
