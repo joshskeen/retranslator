@@ -35,10 +35,14 @@ module Translator
      uk: "Ukrainian",
      mww: "Hmong Daw",
      vi: "Vietnamese",
-     hu: "Hungarian"
+     hu: "Hungarian",
+     ur: "Urdu",
+     cy: "Welsh",
+     ms: "Malay",
+     tlh: "Klingon"
     }.freeze
 
   LANGUAGES = LANGUAGE_LIST.keys
-  NUM_STEPS = 20
+  NUM_STEPS = 15
 
 end
