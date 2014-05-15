@@ -32,7 +32,7 @@ module Translator
 
     def self.random_lang_weighted(from)
       language_model = {
-          en: 8,
+          en: 5,
           mww: 2,
           sl: 1,
           ro: 1,
@@ -44,7 +44,7 @@ module Translator
           fi: 1,
           ht: 2,
           no: 2,
-          ja: 1,
+          ja: 3,
           cy: 2,
           ms: 2
       }
@@ -56,7 +56,7 @@ module Translator
     end
 
     def perform
-      first = Result.new(translator: @translator, translations: @translations, from: :en, to: Scrambler::random_lang_weighted(:en), before: @phrase)
+      first = Result.new(translator: @translator, translations: @translations, from: :en, to: Scrambler::random_lang(:en), before: @phrase)
       first.perform
       @translations << first
       for i in 1..@num_steps
