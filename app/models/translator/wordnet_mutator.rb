@@ -2,7 +2,7 @@ module Translator
   class WordnetMutator
 
     def initialize(args={})
-      @lexicon = WordNet::Lexicon.new
+      @lexicon = WordNet::Lexicon.new(ENV['WORDNET_CONNECTION_URL'])
       @phrase = args.fetch(:phrase_to_mutate, "")
     end
 
