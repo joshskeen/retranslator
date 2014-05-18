@@ -4,7 +4,7 @@ module Translator
     attr_reader :phrase, :num_steps, :translations, :result
 
     def initialize(args={})
-      @lexicon = wordnet_instance
+      @lexicon = Translator::wordnet_instance
       @phrase = args.fetch(:phrase)
       @num_steps = args.fetch(:num_steps, ENV['TRANSLATOR_NUM_STEPS'].to_i)
       @translations = []
