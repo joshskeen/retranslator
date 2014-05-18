@@ -1,4 +1,7 @@
 module Translator
+
+  require 'wordnet'
+
   class Scrambler
     attr_reader :phrase, :num_steps, :translations, :result
 
@@ -28,7 +31,6 @@ module Translator
       end
       to
     end
-
 
 
     def self.random_lang_weighted(from)
@@ -106,7 +108,7 @@ module Translator
         @to = Scrambler::random_lang(@from)
       end
       puts "perform #{@before} : from #{@from} to #{@to}"
-      if(@from == :en && @from != @to)
+      if (@from == :en && @from != @to)
         cache = @before
         @before = @wordnet.wordnetify_phrase(@before)
         puts "NETIFIED! :" + @before
