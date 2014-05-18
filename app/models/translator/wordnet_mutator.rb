@@ -1,9 +1,10 @@
+require 'wordnet'
+
 module Translator
   class WordnetMutator
 
     def initialize(args={})
-      #  @lexicon = WordNet::Lexicon.new(ENV['WORDNET_CONNECTION_URL'])
-      @lexicon = WordNet::Lexicon.new
+      @lexicon = args.fetch(:lexicon)
       @phrase = args.fetch(:phrase_to_mutate, "")
     end
 
@@ -13,13 +14,12 @@ module Translator
     end
 
     def wordnetify(word)
-      syn = @lexicon.lookup_synsets word
-      return false if syn.to_a.empty?
-      words = syn.sample.words
-      return false if words.to_a.empty?
-      lemma = words.sample.lemma
-      return false if lemma.nil?
-      lemma
+      wordnetified = @lexicon.find(word)
+      .flat_map(&:synsets)
+      .flat_map(&:hyponym)
+      .flat_map(&:words)
+      .sample
+      wordnetified.nil? ? false : wordnetified
     end
 
     def perform

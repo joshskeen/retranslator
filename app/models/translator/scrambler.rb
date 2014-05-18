@@ -3,6 +3,7 @@ module Translator
     attr_reader :phrase, :num_steps, :translations, :result
 
     def initialize(args={})
+      @lexicon = WordNet::WordNetDB
       @phrase = args.fetch(:phrase)
       @num_steps = args.fetch(:num_steps, ENV['TRANSLATOR_NUM_STEPS'].to_i)
       @translations = []
@@ -88,7 +89,7 @@ module Translator
       @before = args.fetch(:before)
       @translations = args.fetch(:translations)
       @translator = args.fetch(:translator)
-      @wordnet = WordnetMutator.new
+      @wordnet = WordnetMutator.new(lexicon: @lexicon)
       @after = nil
     end
 
