@@ -57,17 +57,17 @@ module Translator
     end
 
     def perform
-      first = Result.new(translator: @translator, translations: @translations, from: :en, to: Scrambler::random_lang(:en), before: @phrase)
+      first = Result.new(lexicon: @lexicon, translator: @translator, translations: @translations, from: :en, to: Scrambler::random_lang(:en), before: @phrase)
       first.perform
       @translations << first
       for i in 1..@num_steps
         prev = @translations[i - 1]
-        new_translation = Result.new(translator: @translator, from: prev.to, to: Scrambler::random_lang_weighted(prev.to), before: prev.after, translations: @translations)
+        new_translation = Result.new(lexicon: @lexicon, translator: @translator, from: prev.to, to: Scrambler::random_lang_weighted(prev.to), before: prev.after, translations: @translations)
         new_translation.perform
         puts new_translation
         @translations << new_translation
       end
-      last = Result.new(translator: @translator, from: @translations.last.to, to: :en, before: @translations.last.after, translations: @translations)
+      last = Result.new(lexicon: @lexicon, translator: @translator, from: @translations.last.to, to: :en, before: @translations.last.after, translations: @translations)
       last.perform
       @translations << last
       puts "RESULT: #{last.after}"
@@ -89,6 +89,7 @@ module Translator
       @before = args.fetch(:before)
       @translations = args.fetch(:translations)
       @translator = args.fetch(:translator)
+      @lexicon = args.fetch(:lexicon)
       @wordnet = WordnetMutator.new(lexicon: @lexicon)
       @after = nil
     end

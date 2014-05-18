@@ -1,5 +1,3 @@
-require 'wordnet'
-
 module Translator
   class WordnetMutator
 
