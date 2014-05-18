@@ -12,12 +12,13 @@ module Translator
     end
 
     def wordnetify(word)
+      @lexicon.find(word)
       wordnetified = @lexicon.find(word)
       .flat_map(&:synsets)
       .flat_map(&:hyponym)
       .flat_map(&:words)
       .sample
-      wordnetified.nil? ? false : wordnetified
+      wordnetified.nil? ? false : wordnetified.gsub("_", " ")
     end
 
     def perform

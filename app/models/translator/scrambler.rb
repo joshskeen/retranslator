@@ -1,12 +1,10 @@
 module Translator
 
-  require 'wordnet'
-
   class Scrambler
     attr_reader :phrase, :num_steps, :translations, :result
 
     def initialize(args={})
-      @lexicon = WordNet::WordNetDB
+      @lexicon = wordnet_instance
       @phrase = args.fetch(:phrase)
       @num_steps = args.fetch(:num_steps, ENV['TRANSLATOR_NUM_STEPS'].to_i)
       @translations = []
