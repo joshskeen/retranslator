@@ -33,21 +33,21 @@ module Translator
 
     def self.random_lang_weighted(from)
       language_model = {
-          en: 5,
-          mww: 2,
-          sl: 1,
-          ro: 1,
-          et: 2,
-          ru: 1,
-          ca: 1,
-          ar: 2,
-          tlh: 3,
-          fi: 1,
-          ht: 2,
-          no: 2,
-          ja: 3,
-          cy: 2,
-          ms: 2
+          en: 2,#English
+          mww: 2,#Hmong Daw
+          sl: 1,#Slovenian
+          ro: 3,#Romanian
+          et: 2,#Estonian
+          ru: 1,#Russian
+          ca: 1,#Catalan
+          ar: 2,#arabic
+          tlh: 3,#Klingon
+          fi: 1,#Finnish
+          ht: 2,#Haitian Creole
+          no: 2,#Norwegian
+          ja: 3,#Japanese
+          cy: 2,#Greek
+          ms: 2#Maltese
       }
       langs = []
       language_model.each do |k, v|
@@ -109,8 +109,6 @@ module Translator
       if (@from == :en && @from != @to)
         cache = @before
         @before = @wordnet.wordnetify_phrase(@before)
-        puts "NETIFIED! :" + @before
-        puts "was cache: " + cache
       end
 
       @after = @translator.translate(@before, from: @from, to: @to)
